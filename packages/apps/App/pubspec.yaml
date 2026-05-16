@@ -1,0 +1,41 @@
+name: interview_app
+description: Flutter 技术点面试 Demo 应用
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.6.1
+  go_router: ^14.0.0
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets
+  tech_precise_timer:
+    path: ../../tech/precise_timer
+  tech_router_guide:
+    path: ../../tech/router_guide
+  tech_state_management:
+    path: ../../tech/state_management
+  tech_di_guide:
+    path: ../../tech/di_guide
+  tech_http_client:
+    path: ../../tech/http_client
+  tech_custom_painter:
+    path: ../../tech/custom_painter
+  tech_animation:
+    path: ../../tech/animation
+  tech_local_storage:
+    path: ../../tech/local_storage
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true

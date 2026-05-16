@@ -1,0 +1,16 @@
+name: tech_animation
+description: 动画方案 — 隐式动画、显示动画、Hero、交错动画
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets

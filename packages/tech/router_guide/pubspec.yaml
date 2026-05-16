@@ -1,0 +1,16 @@
+name: tech_router_guide
+description: 路由方案 — go_router 最佳实践，声明式路由、嵌套路由、重定向
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets

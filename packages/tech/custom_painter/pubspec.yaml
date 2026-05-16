@@ -1,0 +1,16 @@
+name: tech_custom_painter
+description: 自定义绘制 — CustomPainter、Canvas API、贝塞尔曲线、路径裁剪
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets

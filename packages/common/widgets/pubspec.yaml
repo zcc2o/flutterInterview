@@ -1,0 +1,14 @@
+name: interview_widgets
+description: 共享UI组件 — 导航壳、通用布局
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  interview_core:
+    path: ../core

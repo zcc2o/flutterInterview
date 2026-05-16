@@ -1,0 +1,22 @@
+# melos_managed_dependency_overrides: interview_core,interview_widgets,tech_animation,tech_custom_painter,tech_di_guide,tech_http_client,tech_local_storage,tech_precise_timer,tech_router_guide,tech_state_management
+dependency_overrides:
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets
+  tech_animation:
+    path: ../../tech/animation
+  tech_custom_painter:
+    path: ../../tech/custom_painter
+  tech_di_guide:
+    path: ../../tech/di_guide
+  tech_http_client:
+    path: ../../tech/http_client
+  tech_local_storage:
+    path: ../../tech/local_storage
+  tech_precise_timer:
+    path: ../../tech/precise_timer
+  tech_router_guide:
+    path: ../../tech/router_guide
+  tech_state_management:
+    path: ../../tech/state_management

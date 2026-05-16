@@ -1,0 +1,11 @@
+name: interview_core
+description: 核心基础包 — 主题、路由枚举、常量、工具扩展
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter

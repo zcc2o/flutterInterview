@@ -1,0 +1,16 @@
+name: tech_precise_timer
+description: 精确定时器 — Stopwatch vs Ticker，高精度计时方案
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets

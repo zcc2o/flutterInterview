@@ -1,0 +1,16 @@
+name: tech_di_guide
+description: 依赖注入方案 — 构造函数注入、Service Locator、Provider 模式
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets

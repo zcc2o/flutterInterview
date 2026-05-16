@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "iOS Simulator",
+      "type": "dart",
+      "request": "launch",
+      "program": "packages/apps/App/lib/main.dart",
+      "args": ["-d", "iPhone 15"]
+    },
+    {
+      "name": "Android",
+      "type": "dart",
+      "request": "launch",
+      "program": "packages/apps/App/lib/main.dart",
+      "deviceId": "android"
+    },
+    {
+      "name": "Web",
+      "type": "dart",
+      "request": "launch",
+      "program": "packages/apps/App/lib/main.dart",
+      "deviceId": "chrome"
+    }
+  ]
+}
