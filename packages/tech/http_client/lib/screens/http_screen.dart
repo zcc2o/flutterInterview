@@ -1,61 +1,9 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:interview_widgets/interview_widgets.dart';
-
-// ---------- 自定义 HTTP 客户端 ----------
-class HttpClient {
-  final http.Client _client = http.Client();
-  final String baseUrl;
-  final Duration timeout;
-  String? _authToken;
-
-  HttpClient({required this.baseUrl, this.timeout = const Duration(seconds: 10)});
-
-  void setToken(String token) => _authToken = token;
-
-  Map<String, String> get _headers => {
-        'Content-Type': 'application/json',
-        if (_authToken != null) 'Authorization': 'Bearer $_authToken',
-      };
-
-  Future<ApiResult> get(String path, {Map<String, String>? query}) async {
-    try {
-      final uri = Uri.parse('$baseUrl$path').replace(queryParameters: query);
-      final resp = await _client.get(uri, headers: _headers).timeout(timeout);
-      return ApiResult(resp.statusCode, jsonDecode(resp.body));
-    } on TimeoutException {
-      return ApiResult(408, {'error': '请求超时'});
-    } catch (e) {
-      return ApiResult(500, {'error': e.toString()});
-    }
-  }
-
-  Future<ApiResult> post(String path, {Object? body}) async {
-    try {
-      final uri = Uri.parse('$baseUrl$path');
-      final resp = await _client
-          .post(uri, headers: _headers, body: jsonEncode(body))
-          .timeout(timeout);
-      return ApiResult(resp.statusCode, jsonDecode(resp.body));
-    } on TimeoutException {
-      return ApiResult(408, {'error': '请求超时'});
-    } catch (e) {
-      return ApiResult(500, {'error': e.toString()});
-    }
-  }
-
-  void dispose() => _client.close();
-}
-
-class ApiResult {
-  final int statusCode;
-  final dynamic data;
-  const ApiResult(this.statusCode, this.data);
-
-  bool get isSuccess => statusCode >= 200 && statusCode < 300;
-}
+import '../src/http_client.dart';
+import '../src/api_result.dart';
+import '../src/http_request.dart';
 
 class HttpScreen extends StatefulWidget {
   const HttpScreen({super.key});
@@ -65,37 +13,41 @@ class HttpScreen extends StatefulWidget {
 }
 
 class _HttpScreenState extends State<HttpScreen> {
+  final _client = HttpClient(baseUrl: 'https://jsonplaceholder.typicode.com');
   String _response = '';
   bool _loading = false;
 
   Future<void> _doGet() async {
     setState(() => _loading = true);
-    final client = HttpClient(baseUrl: 'https://jsonplaceholder.typicode.com');
-    final result = await client.get('/posts/1');
-    setState(() {
-      _loading = false;
-      _response = 'GET /posts/1\n'
-          'Status: ${result.statusCode}\n'
-          'Data: ${const JsonEncoder.withIndent('  ').convert(result.data)}';
-    });
-    client.dispose();
+    final request = HttpRequest.get('/posts/1');
+    final result = await _client.execute(request);
+    _showResult('GET /posts/1', result);
   }
 
   Future<void> _doPost() async {
     setState(() => _loading = true);
-    final client = HttpClient(baseUrl: 'https://jsonplaceholder.typicode.com');
-    final result = await client.post('/posts', body: {
+    final request = HttpRequest.post('/posts', body: {
       'title': 'Flutter HTTP',
       'body': '自定义 HttpClient 封装',
       'userId': 1,
     });
+    final result = await _client.execute(request);
+    _showResult('POST /posts', result);
+  }
+
+  void _showResult(String title, ApiResult result) {
     setState(() {
       _loading = false;
-      _response = 'POST /posts\n'
+      _response = '$title\n'
           'Status: ${result.statusCode}\n'
           'Data: ${const JsonEncoder.withIndent('  ').convert(result.data)}';
     });
-    client.dispose();
+  }
+
+  @override
+  void dispose() {
+    _client.dispose();
+    super.dispose();
   }
 
   @override
@@ -113,11 +65,12 @@ class _HttpScreenState extends State<HttpScreen> {
                   Text('HTTP Client 封装要点', style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 12),
                   const Text('1. 统一 Base URL + 请求头\n'
-                      '2. 超时处理（timeout + TimeoutException）\n'
-                      '3. 状态码检查（isSuccess）\n'
-                      '4. Token 管理（setToken）\n'
-                      '5. 请求/响应拦截（日志、重试）\n'
-                      '6. 错误统一封装（ApiResult）'),
+                      '2. HttpRequest 统一封装请求参数\n'
+                      '3. 超时处理（timeout + TimeoutException）\n'
+                      '4. 状态码检查（isSuccess）\n'
+                      '5. Token 管理（setToken）\n'
+                      '6. 错误统一封装（ApiResult）\n'
+                      '7. 支持 GET / POST / PUT / DELETE / PATCH'),
                 ],
               ),
             ),

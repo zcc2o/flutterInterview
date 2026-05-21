@@ -1,0 +1,16 @@
+name: tech_repaint_boundary
+description: RepaintBoundary 优化演示 — 对照有无 RepaintBoundary 的重绘次数差异
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets

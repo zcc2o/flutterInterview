@@ -7,7 +7,9 @@ enum InterviewRoutes {
   http('/http'),
   painter('/painter'),
   animation('/animation'),
-  storage('/storage');
+  storage('/storage'),
+  eventQueue('/event-queue'),
+  repaintBoundary('/repaint-boundary');
 
   final String path;
   const InterviewRoutes(this.path);

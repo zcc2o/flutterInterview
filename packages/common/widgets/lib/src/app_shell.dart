@@ -30,6 +30,8 @@ class HomeScreen extends StatelessWidget {
     (InterviewRoutes.painter, '自定义绘制', Icons.brush),
     (InterviewRoutes.animation, '动画方案', Icons.animation),
     (InterviewRoutes.storage, '本地存储', Icons.sd_card),
+    (InterviewRoutes.eventQueue, '微任务与事件队列', Icons.loop),
+    (InterviewRoutes.repaintBoundary, 'RepaintBoundary 优化', Icons.layers),
   ];
 
   @override

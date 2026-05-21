@@ -1,58 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:interview_widgets/interview_widgets.dart';
+import '../src/constructor_demo.dart';
+import '../src/service_locator_demo.dart';
+import '../src/provider_demo.dart';
 
-// ---------- 1. 构造函数注入 ----------
-abstract class AuthRepo {
-  Future<bool> login(String user, String pwd);
-}
-
-class AuthRepoImpl implements AuthRepo {
-  @override
-  Future<bool> login(String user, String pwd) async => user == 'admin' && pwd == '123';
-}
-
-class AuthService {
-  final AuthRepo repo;
-  const AuthService(this.repo);
-
-  Future<bool> authenticate(String user, String pwd) => repo.login(user, pwd);
-}
-
-// ---------- 2. Service Locator ----------
-class ServiceLocator {
-  static final _instances = <Type, Object>{};
-
-  static void register<T>(T instance) => _instances[T] = instance as Object;
-  static T get<T>() => _instances[T] as T;
-}
-
-void setupDi() {
-  ServiceLocator.register<AuthRepo>(AuthRepoImpl());
-  ServiceLocator.register<AuthService>(AuthService(ServiceLocator.get<AuthRepo>()));
-}
-
-class DiScreen extends StatefulWidget {
+class DiScreen extends StatelessWidget {
   const DiScreen({super.key});
-
-  @override
-  State<DiScreen> createState() => _DiScreenState();
-}
-
-class _DiScreenState extends State<DiScreen> {
-  String _result = '';
-
-  void _testConstructorInjection() async {
-    final svc = AuthService(AuthRepoImpl());
-    final ok = await svc.authenticate('admin', '123');
-    setState(() => _result = '构造函数注入: ${ok ? "✅ 通过" : "❌ 失败"}');
-  }
-
-  void _testServiceLocator() async {
-    setupDi();
-    final svc = ServiceLocator.get<AuthService>();
-    final ok = await svc.authenticate('admin', '123');
-    setState(() => _result = 'Service Locator: ${ok ? "✅ 通过" : "❌ 失败"}');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,74 +13,101 @@ class _DiScreenState extends State<DiScreen> {
       title: '依赖注入方案',
       child: ListView(
         padding: const EdgeInsets.all(16),
-        children: [
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Text('1. 构造函数注入', style: Theme.of(context).textTheme.titleMedium),
-                  const SizedBox(height: 8),
-                  const Text('将依赖通过构造函数传入，依赖倒置原则（DIP）的基础实现。'
-                      '接口 AuthRepo → 实现 AuthRepoImpl → 消费方 AuthService。'),
-                  const SizedBox(height: 12),
-                  FilledButton(
-                    onPressed: _testConstructorInjection,
-                    child: const Text('测试构造函数注入'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Text('2. Service Locator', style: Theme.of(context).textTheme.titleMedium),
-                  const SizedBox(height: 8),
-                  const Text('全局 Map<Type, Object> 注册表。简单直接，但隐藏依赖关系。'
-                      '适合简单项目，复杂项目中推荐使用 get_it / injectable。'),
-                  const SizedBox(height: 12),
-                  FilledButton(
-                    onPressed: _testServiceLocator,
-                    child: const Text('测试 Service Locator'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('3. 方案对比', style: Theme.of(context).textTheme.titleMedium),
-                  const SizedBox(height: 12),
-                  const Text('构造注入：✅ 依赖显式、✅ 可测试、⚠️ 层级深时参数传递冗长\n\n'
-                      'Service Locator：✅ 获取方便、⚠️ 隐藏依赖、⚠️ 运行时错误\n\n'
-                      'Provider（包级变量覆盖）：✅ 符合 Flutter 习惯、✅ widget 树感知\n\n'
-                      'get_it：✅ 注解+代码生成、✅ 支持单例/工厂/lazy\n\n'
-                      'Riverpod：✅ 编译安全、✅ 可覆写、✅ 测试隔离'),
-                ],
-              ),
-            ),
-          ),
-          if (_result.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            Card(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Center(child: Text(_result, style: const TextStyle(fontSize: 18))),
-              ),
-            ),
-          ],
+        children: const [
+          _Section(title: '构造函数注入', child: ConstructorDemo()),
+          _Section(title: 'Service Locator', child: ServiceLocatorDemo()),
+          _Section(title: 'ChangeNotifier 模式', child: ProviderDemo()),
+          _Section(title: '方案对比', child: _ComparisonTable()),
         ],
       ),
+    );
+  }
+}
+
+class _Section extends StatelessWidget {
+  final String title;
+  final Widget child;
+  const _Section({required this.title, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 12),
+            child,
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ComparisonTable extends StatelessWidget {
+  const _ComparisonTable();
+
+  @override
+  Widget build(BuildContext context) {
+    final rows = [
+      ('构造注入', '✅ 依赖显式', '⚠️ 层级深时传参冗长', '简单对象图'),
+      ('Service Locator', '✅ 获取方便', '⚠️ 隐式依赖，运行时错误', '中小型项目'),
+      ('Provider', '✅ Flutter 习惯', '⚠️ 需 BuildContext', 'Widget 树感知的场景'),
+      ('get_it', '✅ 注解+代码生成', '⚠️ 依赖代码生成', '大型项目'),
+      ('Riverpod', '✅ 编译安全，可覆写', '⚠️ 学习成本高', '需测试隔离的场景'),
+    ];
+    return Table(
+      border: TableBorder.all(color: Theme.of(context).dividerColor),
+      columnWidths: const {
+        0: FixedColumnWidth(100),
+        1: FlexColumnWidth(),
+        2: FlexColumnWidth(),
+        3: FixedColumnWidth(100),
+      },
+      children: [
+        const TableRow(
+          decoration: BoxDecoration(color: Color(0xFFF5F5F5)),
+          children: [
+            _Th('方案'),
+            _Th('优势'),
+            _Th('劣势'),
+            _Th('适用场景'),
+          ],
+        ),
+        ...rows.map(
+          (r) => TableRow(children: [_Td(r.$1), _Td(r.$2), _Td(r.$3), _Td(r.$4)]),
+        ),
+      ],
+    );
+  }
+}
+
+class _Th extends StatelessWidget {
+  final String text;
+  const _Th(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+    );
+  }
+}
+
+class _Td extends StatelessWidget {
+  final String text;
+  const _Td(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Text(text, style: const TextStyle(fontSize: 11)),
     );
   }
 }

@@ -512,6 +512,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  tech_event_queue:
+    dependency: "direct main"
+    description:
+      path: "../../tech/event_queue"
+      relative: true
+    source: path
+    version: "0.0.1"
   tech_http_client:
     dependency: "direct main"
     description:
@@ -530,6 +537,13 @@ packages:
     dependency: "direct main"
     description:
       path: "../../tech/precise_timer"
+      relative: true
+    source: path
+    version: "0.0.1"
+  tech_repaint_boundary:
+    dependency: "direct main"
+    description:
+      path: "../../tech/repaint_boundary"
       relative: true
     source: path
     version: "0.0.1"

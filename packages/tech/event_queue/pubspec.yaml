@@ -1,0 +1,16 @@
+name: tech_event_queue
+description: 微任务与事件队列 — Event Loop、Microtask、Future、Timer 执行顺序
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets

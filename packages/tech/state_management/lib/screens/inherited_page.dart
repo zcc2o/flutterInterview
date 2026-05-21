@@ -70,8 +70,8 @@ class InheritedPage extends StatefulWidget {
 
 class _InheritedPageState extends State<InheritedPage> {
   // StatefulWidget 仍然需要来持有可变数据
-  final _cartItems = <CartItem>[];
-  final _orders = <Order>[];
+  List<CartItem> _cartItems = [];
+  List<Order> _orders = [];
   String _selectedCategory = '全部';
   String _searchQuery = '';
 
@@ -82,22 +82,28 @@ class _InheritedPageState extends State<InheritedPage> {
     setState(() {
       final idx = _cartItems.indexWhere((c) => c.product.id == product.id);
       if (idx >= 0) {
-        _cartItems[idx].quantity++;
+        _cartItems = [
+          for (int i = 0; i < _cartItems.length; i++)
+            if (i == idx)
+              CartItem(product: _cartItems[i].product, quantity: _cartItems[i].quantity + 1)
+            else
+              _cartItems[i],
+        ];
       } else {
-        _cartItems.add(CartItem(product: product));
+        _cartItems = [..._cartItems, CartItem(product: product)];
       }
     });
   }
 
   void _removeFromCart(Product product) {
-    setState(() => _cartItems.removeWhere((c) => c.product.id == product.id));
+    setState(() => _cartItems = _cartItems.where((c) => c.product.id != product.id).toList());
   }
 
   void _checkout() {
     if (_cartItems.isEmpty) return;
     setState(() {
-      _orders.insert(0, Order(items: List.from(_cartItems), total: _total, createdAt: DateTime.now()));
-      _cartItems.clear();
+      _orders = [Order(items: List.from(_cartItems), total: _total, createdAt: DateTime.now()), ..._orders];
+      _cartItems = [];
     });
   }
 

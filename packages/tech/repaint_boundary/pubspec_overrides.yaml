@@ -1,0 +1,5 @@
+dependency_overrides:
+  interview_core:
+    path: ../../common/core
+  interview_widgets:
+    path: ../../common/widgets

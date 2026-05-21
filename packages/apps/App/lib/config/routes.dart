@@ -9,6 +9,8 @@ import 'package:tech_http_client/routes.dart' as http;
 import 'package:tech_custom_painter/routes.dart' as painter;
 import 'package:tech_animation/routes.dart' as animation;
 import 'package:tech_local_storage/routes.dart' as storage;
+import 'package:tech_event_queue/routes.dart' as event_queue;
+import 'package:tech_repaint_boundary/routes.dart' as repaint;
 
 final router = GoRouter(
   initialLocation: InterviewRoutes.home.path,
@@ -25,5 +27,7 @@ final router = GoRouter(
     ...painter.routes.values,
     ...animation.routes.values,
     ...storage.routes.values,
+    ...event_queue.routes.values,
+    ...repaint.routes.values,
   ],
 );

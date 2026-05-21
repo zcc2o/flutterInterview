@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:interview_widgets/interview_widgets.dart';
@@ -25,6 +27,8 @@ class _TimerScreenState extends State<TimerScreen>
       if (mounted) setState(() => _tickerElapsed = elapsed);
     });
     _ticker.start();
+
+    macroTask();
   }
 
   @override
@@ -64,6 +68,14 @@ class _TimerScreenState extends State<TimerScreen>
     final deadline = DateTime.now().add(const Duration(seconds: 2));
     while (DateTime.now().isBefore(deadline)) {}
     setState(() {});
+  }
+
+  void macroTask() {
+    Future.delayed(
+      Duration.zero,
+      () => print('事件队列'),
+    ).then((_) => print('微任务队列: then() 回调'));
+    scheduleMicrotask(() => print('手动微任务'));
   }
 
   @override
