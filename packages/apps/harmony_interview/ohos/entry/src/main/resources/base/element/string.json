@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "harmony_interview"
+    },
+    {
+      "name": "app_locate_reason",
+      "value": "用于为您提供附近的服务和精准信息"
+    },
+    {
+      "name": "app_approximately_location_reason",
+      "value": "用于为您提供附近的服务和精准信息"
+    }
+  ]
+}

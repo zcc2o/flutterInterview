@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "characters",
-      "rootUri": "file:///Users/zcc/.pub-cache/hosted/pub.flutter-io.cn/characters-1.4.1",
+      "rootUri": "file:///Users/zcc/.pub-cache/hosted/pub.flutter-io.cn/characters-1.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -15,27 +15,27 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///Users/zcc/Documents/flutter/packages/flutter",
+      "rootUri": "file:///Users/zcc/fvm/versions/ohos/3.35.8-ohos-1.0.1/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.8"
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///Users/zcc/.pub-cache/hosted/pub.flutter-io.cn/material_color_utilities-0.13.0",
+      "rootUri": "file:///Users/zcc/.pub-cache/hosted/pub.flutter-io.cn/material_color_utilities-0.11.1",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "2.17"
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/zcc/.pub-cache/hosted/pub.flutter-io.cn/meta-1.17.0",
+      "rootUri": "file:///Users/zcc/.pub-cache/hosted/pub.flutter-io.cn/meta-1.16.0",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///Users/zcc/Documents/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///Users/zcc/fvm/versions/ohos/3.35.8-ohos-1.0.1/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.8"
     },
     {
       "name": "vector_math",
@@ -47,12 +47,12 @@
       "name": "interview_core",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.11"
+      "languageVersion": "3.9"
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.11.5",
-  "flutterRoot": "file:///Users/zcc/Documents/flutter",
-  "flutterVersion": "3.41.9",
+  "generatorVersion": "3.9.2",
+  "flutterRoot": "file:///Users/zcc/fvm/versions/ohos/3.35.8-ohos-1.0.1",
+  "flutterVersion": "3.35.8-ohos-1.0.1",
   "pubCache": "file:///Users/zcc/.pub-cache"
 }

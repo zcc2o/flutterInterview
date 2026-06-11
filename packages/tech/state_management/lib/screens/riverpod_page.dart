@@ -2,13 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:interview_widgets/interview_widgets.dart';
 import '../models/product.dart';
+import '../providers/cart_providers.dart';
+import '../providers/order_providers.dart';
 
-// ---------- Providers ----------
+// ---------- 页面级 Providers（autoDispose：离开页面自动释放）----------
 
-final categoryProvider = StateProvider<String>((ref) => '全部');
-final searchQueryProvider = StateProvider<String>((ref) => '');
+final categoryProvider = NotifierProvider.autoDispose<CategoryNotifier, String>(
+  CategoryNotifier.new,
+);
 
-final filteredProductsProvider = Provider<List<Product>>((ref) {
+class CategoryNotifier extends AutoDisposeNotifier<String> {
+  @override
+  String build() => '全部';
+  void set(String value) => state = value;
+}
+
+final searchQueryProvider = StateProvider.autoDispose<String>((ref) => '');
+
+final filteredProductsProvider = Provider.autoDispose<List<Product>>((ref) {
   final category = ref.watch(categoryProvider);
   final query = ref.watch(searchQueryProvider);
   var list = kProducts;
@@ -21,95 +32,6 @@ final filteredProductsProvider = Provider<List<Product>>((ref) {
   return list;
 });
 
-// NotifierProvider<①Notifier类型, ②数据状态类型>
-final cartProvider = NotifierProvider<CartNotifier, List<CartItem>>(
-  CartNotifier.new,
-);
-
-class CartNotifier extends Notifier<List<CartItem>> {
-  @override
-  List<CartItem> build() => [];
-
-  void add(Product product) {
-    final idx = state.indexWhere((c) => c.product.id == product.id);
-    if (idx >= 0) {
-      state = [
-        for (int i = 0; i < state.length; i++)
-          if (i == idx)
-            CartItem(product: state[i].product, quantity: state[i].quantity + 1)
-          else
-            state[i],
-      ];
-    } else {
-      state = [...state, CartItem(product: product)];
-    }
-  }
-
-  // 遍历购物车数据，如果不等于购物车数据 就添加到新的列表中，最后用新的列表替换掉旧的购物车数据
-  void remove(Product product) {
-    // 应该先找到这个对象然后减到0才删除
-    final idx = state.indexWhere((c) => c.product.id == product.id);
-    if (idx >= 0) {
-      final item = state[idx];
-      if (item.quantity > 1) {
-        state = [
-          for (int i = 0; i < state.length; i++)
-            if (i == idx)
-              CartItem(
-                product: state[i].product,
-                quantity: state[i].quantity - 1,
-              )
-            else
-              state[i],
-        ];
-      } else {
-        state = state.where((c) => c.product.id != product.id).toList();
-      }
-    } else {
-      state = state.where((c) => c.product.id != product.id).toList();
-    }
-  }
-
-  void clear() => state = [];
-}
-
-// 计算属性：cart 的派生值
-// 计算选择的商品总数
-final cartCountProvider = Provider<int>((ref) {
-  return ref.watch(cartProvider).fold(0, (s, c) => s + c.quantity);
-});
-
-// 计算费用不含税
-final cartSubtotalProvider = Provider<double>((ref) {
-  return ref.watch(cartProvider).fold(0.0, (s, c) => s + c.subtotal);
-});
-
-// 计算税费
-final cartTaxProvider = Provider<double>((ref) {
-  return ref.watch(cartSubtotalProvider) * kTaxRate;
-});
-
-// 总费用
-final cartTotalProvider = Provider<double>((ref) {
-  return ref.watch(cartSubtotalProvider) + ref.watch(cartTaxProvider);
-});
-
-final orderProvider = NotifierProvider<OrderNotifier, List<Order>>(
-  OrderNotifier.new,
-);
-
-class OrderNotifier extends Notifier<List<Order>> {
-  @override
-  List<Order> build() => [];
-
-  void checkout(List<CartItem> items, double total) {
-    state = [
-      Order(items: List.from(items), total: total, createdAt: DateTime.now()),
-      ...state,
-    ];
-  }
-}
-
 // ---------- 页面 ----------
 class RiverpodPage extends ConsumerWidget {
   const RiverpodPage({super.key});
@@ -119,9 +41,6 @@ class RiverpodPage extends ConsumerWidget {
     WidgetRef ref,
     double cartTotal,
   ) async {
-    // final cartItem = ref.watch(cartProvider)[0];
-    final cart = ref.watch(cartProvider);
-    // 为了性能所以可能中间转换过程用了map,导致ref.watch(cartProvider)[0]拿到的购物车数据和实际列表中顺序不一致
     final p = ref.watch(cartProvider)[0].product;
     final confirmed = await showDialog<bool>(
       context: context,

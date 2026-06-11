@@ -35,12 +35,12 @@
     },
     {
       "name": "meta",
-      "version": "1.17.0",
+      "version": "1.16.0",
       "dependencies": []
     },
     {
       "name": "material_color_utilities",
-      "version": "0.13.0",
+      "version": "0.11.1",
       "dependencies": [
         "collection"
       ]
@@ -52,7 +52,7 @@
     },
     {
       "name": "characters",
-      "version": "1.4.1",
+      "version": "1.4.0",
       "dependencies": []
     }
   ],

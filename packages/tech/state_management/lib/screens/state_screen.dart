@@ -36,6 +36,18 @@ class StateScreen extends StatelessWidget {
       desc: '编译安全、自动 dispose、\n支持异步、计算属性，测试友好',
       color: Colors.teal,
     ),
+    (
+      path: '/state/immutable-model',
+      title: '数据模型不可变性 ⭐',
+      desc: '面试重点：freeze / copyWith / 注解，\n可变 vs 不可变模型的对比讲解',
+      color: Colors.deepPurple,
+    ),
+    (
+      path: '/state/riverpod-improved',
+      title: 'Riverpod + 不可变模型 ⭐',
+      desc: '使用 copyWith 改写购物车，\n展示不可变模型在 Riverpod 中的最佳实践',
+      color: Colors.indigo,
+    ),
   ];
 
   @override

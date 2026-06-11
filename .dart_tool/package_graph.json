@@ -40,54 +40,14 @@
       ]
     },
     {
-      "name": "prompts",
-      "version": "2.0.0",
+      "name": "yaml_edit",
+      "version": "2.2.4",
       "dependencies": [
-        "charcode",
-        "io"
-      ]
-    },
-    {
-      "name": "pub_updater",
-      "version": "0.3.1",
-      "dependencies": [
-        "http",
-        "json_annotation",
-        "process",
-        "pub_semver"
-      ]
-    },
-    {
-      "name": "process",
-      "version": "4.2.4",
-      "dependencies": [
-        "file",
-        "path",
-        "platform"
-      ]
-    },
-    {
-      "name": "pubspec",
-      "version": "2.3.0",
-      "dependencies": [
-        "path",
-        "pub_semver",
-        "uri",
+        "collection",
+        "meta",
+        "source_span",
         "yaml"
       ]
-    },
-    {
-      "name": "uri",
-      "version": "1.0.0",
-      "dependencies": [
-        "matcher",
-        "quiver"
-      ]
-    },
-    {
-      "name": "ansi_styles",
-      "version": "0.3.2+1",
-      "dependencies": []
     },
     {
       "name": "yaml",
@@ -106,8 +66,81 @@
       ]
     },
     {
+      "name": "pubspec",
+      "version": "2.3.0",
+      "dependencies": [
+        "path",
+        "pub_semver",
+        "uri",
+        "yaml"
+      ]
+    },
+    {
+      "name": "pub_updater",
+      "version": "0.3.1",
+      "dependencies": [
+        "http",
+        "json_annotation",
+        "process",
+        "pub_semver"
+      ]
+    },
+    {
       "name": "pub_semver",
       "version": "2.2.0",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "prompts",
+      "version": "2.0.0",
+      "dependencies": [
+        "charcode",
+        "io"
+      ]
+    },
+    {
+      "name": "pool",
+      "version": "1.5.2",
+      "dependencies": [
+        "async",
+        "stack_trace"
+      ]
+    },
+    {
+      "name": "platform",
+      "version": "3.1.6",
+      "dependencies": []
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
+    },
+    {
+      "name": "mustache_template",
+      "version": "2.0.4",
+      "dependencies": []
+    },
+    {
+      "name": "meta",
+      "version": "1.18.2",
+      "dependencies": []
+    },
+    {
+      "name": "http",
+      "version": "1.6.0",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "graphs",
+      "version": "2.3.2",
       "dependencies": [
         "collection"
       ]
@@ -137,47 +170,17 @@
       "dependencies": []
     },
     {
-      "name": "charcode",
-      "version": "1.4.0",
+      "name": "collection",
+      "version": "1.19.1",
       "dependencies": []
     },
     {
-      "name": "mustache_template",
-      "version": "2.0.4",
-      "dependencies": []
-    },
-    {
-      "name": "graphs",
-      "version": "2.3.2",
-      "dependencies": [
-        "collection"
-      ]
-    },
-    {
-      "name": "io",
-      "version": "1.0.5",
+      "name": "cli_util",
+      "version": "0.4.2",
       "dependencies": [
         "meta",
-        "path",
-        "string_scanner"
+        "path"
       ]
-    },
-    {
-      "name": "path",
-      "version": "1.9.1",
-      "dependencies": []
-    },
-    {
-      "name": "quiver",
-      "version": "3.2.2",
-      "dependencies": [
-        "matcher"
-      ]
-    },
-    {
-      "name": "platform",
-      "version": "3.1.6",
-      "dependencies": []
     },
     {
       "name": "cli_launcher",
@@ -188,23 +191,13 @@
       ]
     },
     {
-      "name": "pool",
-      "version": "1.5.2",
-      "dependencies": [
-        "async",
-        "stack_trace"
-      ]
+      "name": "args",
+      "version": "2.7.0",
+      "dependencies": []
     },
     {
-      "name": "stack_trace",
-      "version": "1.12.1",
-      "dependencies": [
-        "path"
-      ]
-    },
-    {
-      "name": "collection",
-      "version": "1.19.1",
+      "name": "ansi_styles",
+      "version": "0.3.2+1",
       "dependencies": []
     },
     {
@@ -217,37 +210,48 @@
       ]
     },
     {
-      "name": "term_glyph",
-      "version": "1.2.2",
+      "name": "uri",
+      "version": "1.0.0",
+      "dependencies": [
+        "matcher",
+        "quiver"
+      ]
+    },
+    {
+      "name": "process",
+      "version": "4.2.4",
+      "dependencies": [
+        "file",
+        "path",
+        "platform"
+      ]
+    },
+    {
+      "name": "json_annotation",
+      "version": "4.11.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "io",
+      "version": "1.0.5",
+      "dependencies": [
+        "meta",
+        "path",
+        "string_scanner"
+      ]
+    },
+    {
+      "name": "charcode",
+      "version": "1.4.0",
       "dependencies": []
     },
     {
-      "name": "yaml_edit",
-      "version": "2.2.4",
+      "name": "stack_trace",
+      "version": "1.12.1",
       "dependencies": [
-        "collection",
-        "meta",
-        "source_span",
-        "yaml"
-      ]
-    },
-    {
-      "name": "cli_util",
-      "version": "0.4.2",
-      "dependencies": [
-        "meta",
         "path"
-      ]
-    },
-    {
-      "name": "matcher",
-      "version": "0.12.20",
-      "dependencies": [
-        "async",
-        "meta",
-        "stack_trace",
-        "term_glyph",
-        "test_api"
       ]
     },
     {
@@ -256,21 +260,6 @@
       "dependencies": [
         "collection",
         "meta"
-      ]
-    },
-    {
-      "name": "meta",
-      "version": "1.18.2",
-      "dependencies": []
-    },
-    {
-      "name": "http",
-      "version": "1.6.0",
-      "dependencies": [
-        "async",
-        "http_parser",
-        "meta",
-        "web"
       ]
     },
     {
@@ -289,6 +278,29 @@
       ]
     },
     {
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "dependencies": []
+    },
+    {
+      "name": "quiver",
+      "version": "3.2.2",
+      "dependencies": [
+        "matcher"
+      ]
+    },
+    {
+      "name": "matcher",
+      "version": "0.12.19",
+      "dependencies": [
+        "async",
+        "meta",
+        "stack_trace",
+        "term_glyph",
+        "test_api"
+      ]
+    },
+    {
       "name": "typed_data",
       "version": "1.4.0",
       "dependencies": [
@@ -296,20 +308,8 @@
       ]
     },
     {
-      "name": "args",
-      "version": "2.7.0",
-      "dependencies": []
-    },
-    {
-      "name": "json_annotation",
-      "version": "4.11.0",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
       "name": "test_api",
-      "version": "0.7.12",
+      "version": "0.7.10",
       "dependencies": [
         "async",
         "boolean_selector",
@@ -323,18 +323,18 @@
       ]
     },
     {
+      "name": "stream_channel",
+      "version": "2.1.4",
+      "dependencies": [
+        "async"
+      ]
+    },
+    {
       "name": "boolean_selector",
       "version": "2.1.2",
       "dependencies": [
         "source_span",
         "string_scanner"
-      ]
-    },
-    {
-      "name": "stream_channel",
-      "version": "2.1.4",
-      "dependencies": [
-        "async"
       ]
     }
   ],

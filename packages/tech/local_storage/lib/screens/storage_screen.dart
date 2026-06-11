@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:interview_widgets/interview_widgets.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../src/shared_prefs_demo.dart';
 import '../src/file_storage_demo.dart';
 
-class StorageScreen extends StatelessWidget {
+class StorageScreen extends StatefulWidget {
   const StorageScreen({super.key});
+
+  @override
+  State<StorageScreen> createState() => _StorageScreenState();
+}
+
+class _StorageScreenState extends State<StorageScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // 这里可以添加一些初始化逻辑，例如预加载数据或权限请求
+    debugPrint('StorageScreen initialized');
+    requestPermissions();
+  }
+
+  requestPermissions() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.location,
+      Permission.storage,
+    ].request();
+    debugPrint(' 测试测试 ：${statuses[Permission.location].toString()}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,15 +91,11 @@ class _ComparisonTable extends StatelessWidget {
       children: [
         const TableRow(
           decoration: BoxDecoration(color: Color(0xFFF5F5F5)),
-          children: [
-            _Th('方案'),
-            _Th('适用场景'),
-            _Th('优势'),
-            _Th('劣势'),
-          ],
+          children: [_Th('方案'), _Th('适用场景'), _Th('优势'), _Th('劣势')],
         ),
         ...rows.map(
-          (r) => TableRow(children: [_Td(r.$1), _Td(r.$2), _Td(r.$3), _Td(r.$4)]),
+          (r) =>
+              TableRow(children: [_Td(r.$1), _Td(r.$2), _Td(r.$3), _Td(r.$4)]),
         ),
       ],
     );
@@ -92,7 +110,10 @@ class _Th extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+      child: Text(
+        text,
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+      ),
     );
   }
 }

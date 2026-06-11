@@ -6,6 +6,8 @@ import 'screens/inherited_page.dart';
 import 'screens/changenotifier_page.dart';
 import 'screens/provider_page.dart';
 import 'screens/riverpod_page.dart';
+import 'screens/immutable_model_page.dart';
+import 'screens/riverpod_improved_page.dart';
 
 final routes = <InterviewRoutes, GoRoute>{
   InterviewRoutes.state: GoRoute(
@@ -31,6 +33,14 @@ final routes = <InterviewRoutes, GoRoute>{
       GoRoute(
         path: 'riverpod',
         builder: (context, state) => const RiverpodPage(),
+      ),
+      GoRoute(
+        path: 'immutable-model',
+        builder: (context, state) => const ImmutableModelPage(),
+      ),
+      GoRoute(
+        path: 'riverpod-improved',
+        builder: (context, state) => const RiverpodImprovedPage(),
       ),
     ],
   ),

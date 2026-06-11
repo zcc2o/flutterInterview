@@ -23,7 +23,10 @@ class _RepaintBoundaryScreenState extends State<RepaintBoundaryScreen>
   @override
   void initState() {
     super.initState();
-    _ctrl = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
     _ctrl.addListener(_onTick);
   }
 
@@ -74,7 +77,10 @@ class _RepaintBoundaryScreenState extends State<RepaintBoundaryScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('RepaintBoundary 原理', style: Theme.of(context).textTheme.titleMedium),
+                  Text(
+                    'RepaintBoundary 原理',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
                   const SizedBox(height: 8),
                   const Text(
                     'Flutter 中父 Widget 重绘时，子 Widget 默认也会重绘。\n'
@@ -125,9 +131,7 @@ class _RepaintBoundaryScreenState extends State<RepaintBoundaryScreen>
                 ),
               ),
               const SizedBox(width: 12),
-              Expanded(
-                child: WithBoundaryDemo(animation: _ctrl),
-              ),
+              Expanded(child: WithBoundaryDemo(animation: _ctrl)),
             ],
           ),
           const SizedBox(height: 16),
@@ -159,13 +163,18 @@ class _RepaintBoundaryScreenState extends State<RepaintBoundaryScreen>
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primaryContainer.withAlpha(50),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primaryContainer.withAlpha(50),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: const Text(
                       '总结：将不随动画变化的重 Widget 用 RepaintBoundary 包裹，'
                       '可显著减少不必要的重绘，降低 GPU 负载。',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
@@ -201,7 +210,7 @@ class _StatsCard extends StatelessWidget {
             const SizedBox(height: 12),
             _StatRow('运行时长', '${elapsed.inMilliseconds} ms'),
             _StatRow('无 RepaintBoundary 侧 paint() 次数', '$paintCount 次'),
-            _StatRow('有 RepaintBoundary 侧 paint() 次数', '仅 1 次'),
+            const _StatRow('有 RepaintBoundary 侧 paint() 次数', '仅 1 次'),
             _StatRow('节省的 Canvas 操作', '≈ $estimatedSavings 次'),
           ],
         ),
@@ -222,7 +231,14 @@ class _StatRow extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: Text(label, style: const TextStyle(fontSize: 13))),
-          Text(value, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary)),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
         ],
       ),
     );
@@ -241,7 +257,13 @@ class _GuideRow extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(num, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary)),
+          Text(
+            num,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
           const SizedBox(width: 8),
           Expanded(child: Text(text, style: const TextStyle(fontSize: 13))),
         ],

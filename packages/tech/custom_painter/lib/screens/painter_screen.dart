@@ -13,7 +13,8 @@ class PainterScreen extends StatefulWidget {
   State<PainterScreen> createState() => _PainterScreenState();
 }
 
-class _PainterScreenState extends State<PainterScreen> with SingleTickerProviderStateMixin {
+class _PainterScreenState extends State<PainterScreen>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _rippleCtrl;
   late final AnimationController _bezierCtrl;
   late final AnimationController _clockCtrl;
@@ -30,11 +31,18 @@ class _PainterScreenState extends State<PainterScreen> with SingleTickerProvider
   @override
   void initState() {
     super.initState();
-    _rippleCtrl = AnimationController(vsync: this, duration: const Duration(seconds: 2))..repeat();
-    _bezierCtrl = AnimationController(vsync: this, duration: const Duration(seconds: 3))..repeat();
-    _clockCtrl = AnimationController(vsync: this, duration: const Duration(seconds: 1))
-      ..repeat()
-      ..addListener(() => setState(() => _now = DateTime.now()));
+    _rippleCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat();
+    _bezierCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..repeat();
+    _clockCtrl =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1))
+          ..repeat()
+          ..addListener(() => setState(() => _now = DateTime.now()));
   }
 
   @override
@@ -56,19 +64,31 @@ class _PainterScreenState extends State<PainterScreen> with SingleTickerProvider
             title: '饼图 (PieChartPainter)',
             child: Column(
               children: [
-                SizedBox(height: 180, child: CustomPaint(painter: PieChartPainter(slices: _pieSlices))),
+                SizedBox(
+                  height: 180,
+                  child: CustomPaint(
+                    painter: PieChartPainter(slices: _pieSlices),
+                  ),
+                ),
                 const SizedBox(height: 8),
                 Wrap(
                   spacing: 12,
                   runSpacing: 4,
-                  children: _pieSlices.map((s) => Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(width: 12, height: 12, color: s.$2),
-                      const SizedBox(width: 4),
-                      Text('${s.$1} ${(s.$3 * 100).toInt()}%', style: const TextStyle(fontSize: 11)),
-                    ],
-                  )).toList(),
+                  children: _pieSlices
+                      .map(
+                        (s) => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(width: 12, height: 12, color: s.$2),
+                            const SizedBox(width: 4),
+                            Text(
+                              '${s.$1} ${(s.$3 * 100).toInt()}%',
+                              style: const TextStyle(fontSize: 11),
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList(),
                 ),
               ],
             ),
@@ -81,10 +101,15 @@ class _PainterScreenState extends State<PainterScreen> with SingleTickerProvider
                   height: 160,
                   child: AnimatedBuilder(
                     animation: _bezierCtrl,
-                    builder: (_, __) => CustomPaint(painter: BezierDemoPainter(progress: _bezierCtrl.value)),
+                    builder: (_, __) => CustomPaint(
+                      painter: BezierDemoPainter(progress: _bezierCtrl.value),
+                    ),
                   ),
                 ),
-                const Text('红色点沿三阶贝塞尔曲线运动', style: TextStyle(fontSize: 11, color: Colors.grey)),
+                const Text(
+                  '红色点沿三阶贝塞尔曲线运动',
+                  style: TextStyle(fontSize: 11, color: Colors.grey),
+                ),
               ],
             ),
           ),
@@ -94,7 +119,8 @@ class _PainterScreenState extends State<PainterScreen> with SingleTickerProvider
               height: 160,
               child: AnimatedBuilder(
                 animation: _rippleCtrl,
-                builder: (_, __) => CustomPaint(painter: _RipplePainter(_rippleCtrl.value)),
+                builder: (_, __) =>
+                    CustomPaint(painter: _RipplePainter(_rippleCtrl.value)),
               ),
             ),
           ),
@@ -105,9 +131,9 @@ class _PainterScreenState extends State<PainterScreen> with SingleTickerProvider
               child: CustomPaint(painter: ClockPainter(dateTime: _now)),
             ),
           ),
-          _Section(
+          const _Section(
             title: '路径裁剪 (ClipPath + CustomClipper)',
-            child: const ClipPathDemo(),
+            child: ClipPathDemo(),
           ),
           _Section(
             title: '核心 API 参考',
@@ -118,12 +144,39 @@ class _PainterScreenState extends State<PainterScreen> with SingleTickerProvider
                 1: FlexColumnWidth(),
               },
               children: const [
-                TableRow(children: [_Td('paint(Canvas, Size)'), _Td('核心绘制方法，所有绘制逻辑入口')]),
-                TableRow(children: [_Td('shouldRepaint()'), _Td('判断是否需要重绘，性能优化关键')]),
-                TableRow(children: [_Td('Canvas.draw*'), _Td('drawRect/Circle/Arc/Path/Line 等绘制方法')]),
-                TableRow(children: [_Td('Paint'), _Td('颜色、样式(fill/stroke)、渐变、阴影、strokeWidth')]),
-                TableRow(children: [_Td('Path'), _Td('moveTo, lineTo, quadraticBezierTo, cubicTo')]),
-                TableRow(children: [_Td('ClipPath'), _Td('CustomClipper + ClipPath 实现路径裁剪')]),
+                TableRow(
+                  children: [
+                    _Td('paint(Canvas, Size)'),
+                    _Td('核心绘制方法，所有绘制逻辑入口'),
+                  ],
+                ),
+                TableRow(
+                  children: [_Td('shouldRepaint()'), _Td('判断是否需要重绘，性能优化关键')],
+                ),
+                TableRow(
+                  children: [
+                    _Td('Canvas.draw*'),
+                    _Td('drawRect/Circle/Arc/Path/Line 等绘制方法'),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    _Td('Paint'),
+                    _Td('颜色、样式(fill/stroke)、渐变、阴影、strokeWidth'),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    _Td('Path'),
+                    _Td('moveTo, lineTo, quadraticBezierTo, cubicTo'),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    _Td('ClipPath'),
+                    _Td('CustomClipper + ClipPath 实现路径裁剪'),
+                  ],
+                ),
               ],
             ),
           ),

@@ -14,3 +14,15 @@ scripts:
     run: melos exec -- "flutter test" --no-private
   clean:
     exec: flutter clean
+
+  bootstrap:ohos:
+    run: |
+      melos bootstrap
+      fvm flutter pub get
+    description: Bootstrap workspace with HarmonyOS overrides.
+  build:ohos:
+    run: |
+      cd packages/apps/harmony_interview
+      fvm flutter pub get
+      fvm flutter build hap
+    description: Build HarmonyOS app with overrides.
