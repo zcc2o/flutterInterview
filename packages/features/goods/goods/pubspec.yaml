@@ -1,0 +1,18 @@
+name: goods
+description: 商品模块 — 依赖 trade_interfaces，实现 IGoodsService
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.9.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  trade_interfaces:                     # ← 只依赖接口包
+    path: ../../../interfaces/trade_interfaces
+  interview_core:
+    path: ../../../common/core
+  interview_widgets:
+    path: ../../../common/widgets

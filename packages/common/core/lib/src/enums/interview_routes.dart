@@ -9,7 +9,9 @@ enum InterviewRoutes {
   animation('/animation'),
   storage('/storage'),
   eventQueue('/event-queue'),
-  repaintBoundary('/repaint-boundary');
+  repaintBoundary('/repaint-boundary'),
+  goodsDetail('/goods/detail'),
+  orderDetail('/order/detail');
 
   final String path;
   const InterviewRoutes(this.path);

@@ -4,6 +4,8 @@ packages:
   - packages/apps/**
   - packages/common/**
   - packages/tech/**
+  - packages/features/**
+  - packages/interfaces/**
 
 scripts:
   analyze:

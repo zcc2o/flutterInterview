@@ -112,6 +112,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "14.8.1"
+  goods:
+    dependency: "direct main"
+    description:
+      path: "../../features/goods/goods"
+      relative: true
+    source: path
+    version: "0.0.1"
   http:
     dependency: transitive
     description:
@@ -230,6 +237,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.0"
+  order:
+    dependency: "direct main"
+    description:
+      path: "../../features/order/order"
+      relative: true
+    source: path
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:
@@ -561,6 +575,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.7.6"
+  trade_interfaces:
+    dependency: "direct main"
+    description:
+      path: "../../interfaces/trade_interfaces"
+      relative: true
+    source: path
+    version: "0.0.1"
   typed_data:
     dependency: transitive
     description:

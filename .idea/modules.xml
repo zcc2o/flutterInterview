@@ -2,17 +2,23 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/packages/features/goods/goods/melos_goods.iml" filepath="$PROJECT_DIR$/packages/features/goods/goods/melos_goods.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/apps/harmony_interview/melos_harmony_interview.iml" filepath="$PROJECT_DIR$/packages/apps/harmony_interview/melos_harmony_interview.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/apps/App/melos_interview_app.iml" filepath="$PROJECT_DIR$/packages/apps/App/melos_interview_app.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/common/core/melos_interview_core.iml" filepath="$PROJECT_DIR$/packages/common/core/melos_interview_core.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/common/widgets/melos_interview_widgets.iml" filepath="$PROJECT_DIR$/packages/common/widgets/melos_interview_widgets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/features/order/order/melos_order.iml" filepath="$PROJECT_DIR$/packages/features/order/order/melos_order.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/tech/animation/melos_tech_animation.iml" filepath="$PROJECT_DIR$/packages/tech/animation/melos_tech_animation.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/tech/custom_painter/melos_tech_custom_painter.iml" filepath="$PROJECT_DIR$/packages/tech/custom_painter/melos_tech_custom_painter.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/tech/di_guide/melos_tech_di_guide.iml" filepath="$PROJECT_DIR$/packages/tech/di_guide/melos_tech_di_guide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/tech/event_queue/melos_tech_event_queue.iml" filepath="$PROJECT_DIR$/packages/tech/event_queue/melos_tech_event_queue.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/tech/http_client/melos_tech_http_client.iml" filepath="$PROJECT_DIR$/packages/tech/http_client/melos_tech_http_client.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/tech/local_storage/melos_tech_local_storage.iml" filepath="$PROJECT_DIR$/packages/tech/local_storage/melos_tech_local_storage.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/tech/precise_timer/melos_tech_precise_timer.iml" filepath="$PROJECT_DIR$/packages/tech/precise_timer/melos_tech_precise_timer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/tech/repaint_boundary/melos_tech_repaint_boundary.iml" filepath="$PROJECT_DIR$/packages/tech/repaint_boundary/melos_tech_repaint_boundary.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/tech/router_guide/melos_tech_router_guide.iml" filepath="$PROJECT_DIR$/packages/tech/router_guide/melos_tech_router_guide.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/tech/state_management/melos_tech_state_management.iml" filepath="$PROJECT_DIR$/packages/tech/state_management/melos_tech_state_management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/interfaces/trade_interfaces/melos_trade_interfaces.iml" filepath="$PROJECT_DIR$/packages/interfaces/trade_interfaces/melos_trade_interfaces.iml" />
       <module fileurl="file://$PROJECT_DIR$/melos_flutter-interview.iml" filepath="$PROJECT_DIR$/melos_flutter-interview.iml" />
     </modules>
   </component>

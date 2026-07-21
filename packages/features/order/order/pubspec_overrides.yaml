@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: interview_core,interview_widgets,trade_interfaces
+dependency_overrides:
+  interview_core:
+    path: ../../../common/core
+  interview_widgets:
+    path: ../../../common/widgets
+  trade_interfaces:
+    path: ../../../interfaces/trade_interfaces

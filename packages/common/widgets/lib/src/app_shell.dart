@@ -32,6 +32,8 @@ class HomeScreen extends StatelessWidget {
     (InterviewRoutes.storage, '本地存储', Icons.sd_card),
     (InterviewRoutes.eventQueue, '微任务与事件队列', Icons.loop),
     (InterviewRoutes.repaintBoundary, 'RepaintBoundary 优化', Icons.layers),
+    (InterviewRoutes.goodsDetail, '【API方案】商品模块', Icons.shopping_bag),
+    (InterviewRoutes.orderDetail, '【API方案】订单模块', Icons.receipt_long),
   ];
 
   @override

@@ -1,0 +1,13 @@
+name: trade_interfaces
+description: 交易域接口契约 — goods 和 order 共享的接口 + 纯数据类
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.9.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+# 注意：此包只放接口 + 数据类，零业务逻辑，零外部依赖

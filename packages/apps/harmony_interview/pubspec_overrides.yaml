@@ -1,13 +1,9 @@
-# melos_managed_dependency_overrides: interview_core,interview_widgets,tech_animation,tech_custom_painter,tech_di_guide,tech_http_client,tech_local_storage,tech_precise_timer,tech_router_guide,tech_state_management,goods,order,tech_event_queue,tech_repaint_boundary,trade_interfaces
+# melos_managed_dependency_overrides: interview_core,interview_widgets,tech_animation,tech_custom_painter,tech_di_guide,tech_event_queue,tech_http_client,tech_local_storage,tech_precise_timer,tech_repaint_boundary,tech_router_guide,tech_state_management,permission_handler,goods,order,trade_interfaces
 dependency_overrides:
-  goods:
-    path: ../../features/goods/goods
   interview_core:
     path: ../../common/core
   interview_widgets:
     path: ../../common/widgets
-  order:
-    path: ../../features/order/order
   tech_animation:
     path: ../../tech/animation
   tech_custom_painter:
@@ -28,5 +24,13 @@ dependency_overrides:
     path: ../../tech/router_guide
   tech_state_management:
     path: ../../tech/state_management
+  permission_handler:
+    git:
+      url: https://gitcode.com/CPF-Flutter/flutter_permission_handler.git
+      path: permission_handler
+  goods:
+    path: ../../features/goods/goods
+  order:
+    path: ../../features/order/order
   trade_interfaces:
     path: ../../interfaces/trade_interfaces

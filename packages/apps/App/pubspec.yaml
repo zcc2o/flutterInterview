@@ -35,6 +35,12 @@ dependencies:
     path: ../../tech/event_queue
   tech_repaint_boundary:
     path: ../../tech/repaint_boundary
+  trade_interfaces:
+    path: ../../interfaces/trade_interfaces
+  goods:
+    path: ../../features/goods/goods
+  order:
+    path: ../../features/order/order
 
 dev_dependencies:
   flutter_test:

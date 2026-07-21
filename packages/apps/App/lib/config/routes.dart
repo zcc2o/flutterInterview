@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:goods/src/goods_service_impl.dart';         // 壳工程 DI 组装
 import 'package:interview_core/interview_core.dart';
 import 'package:interview_widgets/interview_widgets.dart';
 import 'package:tech_precise_timer/routes.dart' as timer;
@@ -11,6 +12,18 @@ import 'package:tech_animation/routes.dart' as animation;
 import 'package:tech_local_storage/routes.dart' as storage;
 import 'package:tech_event_queue/routes.dart' as event_queue;
 import 'package:tech_repaint_boundary/routes.dart' as repaint;
+import 'package:goods/routes.dart' as goods;
+import 'package:order/routes.dart' as order;
+
+// ============================================================
+// 【壳工程 — DI 组装点】
+// 这是唯一需要同时知道 goods 和 order 两个模块的地方。
+// goods 和 order 互相之间完全不感知对方的存在。
+// ============================================================
+
+/// 创建实现，注入接口
+final _goodsService = GoodsServiceImpl();
+final _orderRoutes = order.createOrderRoutes(goodsService: _goodsService);
 
 final router = GoRouter(
   initialLocation: InterviewRoutes.home.path,
@@ -29,5 +42,7 @@ final router = GoRouter(
     ...storage.routes.values,
     ...event_queue.routes.values,
     ...repaint.routes.values,
+    ...goods.routes.values,
+    ..._orderRoutes.values,
   ],
 );

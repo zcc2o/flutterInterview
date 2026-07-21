@@ -1,0 +1,21 @@
+name: order
+description: 订单模块 — 只依赖 trade_interfaces，不依赖 goods 包
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.9.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^14.0.0
+  trade_interfaces:                     # ← 只依赖接口包，不依赖 goods！
+    path: ../../../interfaces/trade_interfaces
+  interview_core:
+    path: ../../../common/core
+  interview_widgets:
+    path: ../../../common/widgets
+
+# 注意：此文件里没有 goods 依赖！
+# order 和 goods 通过 trade_interfaces 通信，互不感知对方。
